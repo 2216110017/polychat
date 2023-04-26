@@ -1,0 +1,70 @@
+package com.example.polychat24
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.polychat24.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+
+//class MainActivity : AppCompatActivity() {
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_main)
+//    }
+//}
+
+class MainActivity : AppCompatActivity() {
+
+    lateinit var binding: ActivityMainBinding
+    lateinit var adapter: UserAdapter
+
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var mDbRef: DatabaseReference
+
+    private lateinit var userList: ArrayList<User>  //데이터를 담을 리스트
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        mAuth = Firebase.auth   //인증 초기화
+        mDbRef = Firebase.database.reference    //DB 초기화
+        userList = ArrayList()  //리스트 초기화
+
+        adapter = UserAdapter(this, userList)   //UserAdapter에 context, userList 넘겨주기
+
+        binding.userRecycelrView.layoutManager = LinearLayoutManager(this)
+        binding.userRecycelrView.adapter = adapter
+
+        //DB에서 user 사용자 정보 가져오기
+        mDbRef.child("user").addValueEventListener(object: ValueEventListener {
+            //데이터가 변경될 때마다 실행됨
+            override fun onDataChange(snapshot: DataSnapshot) {
+                //snapshot.children : 하위 데이터를 꺼냄
+                for(postSnapshot in snapshot.children){
+                    val currentUser = postSnapshot.getValue(User::class.java)   //currentUser = 실제 사용자정보
+
+                    //mAuth.currentUser?.uid = 현재 로그인한 사용자정보(uid)
+                    //나를 제외한 사용자만 화면에 출력함
+                    if(mAuth.currentUser?.uid != currentUser?.uId){
+                        userList.add(currentUser!!)
+                    }
+                }
+                adapter.notifyDataSetChanged()  //실제 화면에 적용
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                //실패 시 실행
+            }
+        })
+
+    }
+}
