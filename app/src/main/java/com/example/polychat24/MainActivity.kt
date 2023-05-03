@@ -1,5 +1,6 @@
 package com.example.polychat24
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -12,17 +13,18 @@ import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
-    lateinit var adapter: UserAdapter
-
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: UserAdapter
     private lateinit var userList: ArrayList<User>
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)    //메뉴 액션바
 
-        userList = ArrayList()
+        userList = ArrayList()  //리스트 초기화
 
         adapter = UserAdapter(this, userList)
         binding.userRecycelrView.layoutManager = LinearLayoutManager(this)
@@ -38,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 val jsonObject = jsonArray.getJSONObject(i)
                 val currentUser = User(
                     jsonObject.getInt("userID"),
-                    jsonObject.getInt("stuNum"),
+                    jsonObject.getString("stuNum"),
                     jsonObject.getString("stuName")
                 )
                 userList.add(currentUser)
@@ -46,19 +48,18 @@ class MainActivity : AppCompatActivity() {
         } catch (e: IOException) {
             e.printStackTrace()
         }
-
         adapter.notifyDataSetChanged()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
+        menuInflater.inflate(R.menu.menu, menu) //menu.xml 연결
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.log_out) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {   //menu를 선택했을 때 실행되는 함수
+        if(item.itemId == R.id.log_out) {   //log_out메뉴를 선택하면
             val intent = Intent(this@MainActivity, LogInActivity::class.java)
-            startActivity(intent)
+            startActivity(intent)   //startActivity로 이동
             finish()
             return true
         }
@@ -119,7 +120,7 @@ class MainActivity : AppCompatActivity() {
 //
 //                    //mAuth.currentUser?.uid = 현재 로그인한 사용자정보(uid)
 //                    //나를 제외한 사용자만 화면에 출력함
-//                    if(mAuth.currentUser?.uid != currentUser?.UserID){
+//                    if(mAuth.currentUser?.uid != currentUser?.userID){
 //                        userList.add(currentUser!!)
 //                    }
 //                }
