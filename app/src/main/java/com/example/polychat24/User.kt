@@ -1,11 +1,10 @@
 package com.example.polychat24
 
-class User (
-    var name: String,
-    var email: String,
-    var uId: String
-){
-    constructor(): this("","","")
+class User(
+    val userID: Int,
+    val stuNum: Int,
+    val stuName: String
+) {
+    constructor() : this(0, 0, "")
 }
 
-// branch test

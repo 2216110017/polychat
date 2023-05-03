@@ -21,7 +21,7 @@ class UserAdapter(private val context: Context, private val userList: ArrayList<
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
 
         val currentUser = userList[position]    //userList의 데이터를 순서대로 currentUser에 넣음
-        holder.nameText.text = currentUser.name //currentUser의 name을 텍스트뷰에 넣음
+        holder.nameText.text = currentUser.stuName //currentUser의 stuName을 텍스트뷰에 넣음
     }
 
     class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {    //RecyclerView.ViewHolder를 상속받아 View를 전달받아 user_layout에 텍스트뷰 객체 생성 가능
