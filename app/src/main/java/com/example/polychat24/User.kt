@@ -2,9 +2,13 @@ package com.example.polychat24
 
 class User(
     val userID: Int,
-    val stuNum: Int,
+    val stuNum: String,
     val stuName: String
 ) {
-    constructor() : this(0, 0, "")
+    constructor() : this(
+        0,
+        "",
+        ""
+    )
 }
 
