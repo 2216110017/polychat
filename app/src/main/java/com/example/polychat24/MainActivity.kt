@@ -1,6 +1,9 @@
 package com.example.polychat24
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.polychat24.databinding.ActivityMainBinding
@@ -65,6 +68,21 @@ class MainActivity : AppCompatActivity() {
                 //실패 시 실행
             }
         })
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu) //menu.xml 연결
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {   //menu를 선택했을 때 실행되는 함수
+        if(item.itemId == R.id.log_out) {   //log_out메뉴를 선택하면
+            mAuth.signOut() //signOut 실행
+            val intent = Intent(this@MainActivity, LogInActivity::class.java)
+            startActivity(intent)   //startActivity로 이동
+            finish()
+            return true
+        }
+        return true
     }
 }

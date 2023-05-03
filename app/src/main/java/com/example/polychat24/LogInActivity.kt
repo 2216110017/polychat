@@ -19,7 +19,7 @@ import com.google.firebase.ktx.Firebase
 
 class LogInActivity : AppCompatActivity() {
     lateinit var binding: ActivityLogInBinding
-    lateinit var mAuth: FirebaseAuth
+    lateinit var mAuth: FirebaseAuth    //인증 서비스 객체 생성
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
