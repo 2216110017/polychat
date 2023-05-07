@@ -6,21 +6,21 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".mainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/user_recycelrView"
+        android:id="@+id/user_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:scrollbars="vertical"
         tools:listitem="@layout/user_layout" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="horizontal"
         android:layout_weight="1">
-
         <EditText
             android:id="@+id/chatText"
             android:layout_width="match_parent"
