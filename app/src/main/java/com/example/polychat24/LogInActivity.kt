@@ -45,7 +45,7 @@ class LogInActivity : AppCompatActivity() {
             }
         }
 //stuNum != null &&
-        return false    //일치하는 데이터가 없으면 false
+        return false    //일치하는 데이터가 없으면 false 반환
     }
 
     //json 읽기

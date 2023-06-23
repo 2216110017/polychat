@@ -23,9 +23,10 @@
     android:layout_marginTop="10dp"
     android:layout_marginRight="20dp"
     android:background="@drawable/edit_background"
-    android:hint="학번"
+    android:hint="@string/log_in_stuNum_hint"
     android:inputType="number"
-    android:paddingStart="15dp" />
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp"/>
 
     <EditText
         android:id="@+id/stuNameEdit"
@@ -36,9 +37,10 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/edit_background"
-        android:hint="이름"
+        android:hint="@string/log_in_stuName_hint"
         android:inputType="text"
-        android:paddingStart="15dp" />
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_btn"
@@ -48,7 +50,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/btn_background"
-        android:text="로그인"
+        android:text="@string/log_in_btn_text"
         android:textColor="#757575"
         android:textSize="20sp" />
 </RelativeLayout>

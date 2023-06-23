@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace 'com.example.polychat24'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.polychat24"
+        applicationId 'PolyChat'
         minSdk 21
-        targetSdk 33
+        targetSdk 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testApplicationId 'chattest11'
@@ -41,11 +41,10 @@ android {
             }
         }
     }
-
     buildFeatures{
         viewBinding = true  //fileViewByld없이 뷰 객체 접근하기 위한 설정
     }
-
+    buildToolsVersion '34.0.0'
 }
 
 dependencies {
@@ -67,7 +66,9 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'com.google.firebase:firebase-storage-ktx:20.2.0'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.2.1'
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.core:core-ktx:1.10.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
