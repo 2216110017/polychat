@@ -61,4 +61,3 @@ class LogInActivity : AppCompatActivity() {
         return json
     }
 }
-
