@@ -1,6 +1,7 @@
 package com.example.polychat24
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,14 +15,22 @@ class UserAdapter(private val context: Context, private val userList: ArrayList<
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val view: View = LayoutInflater.from(context).inflate(R.layout.user_layout, parent, false)
         //view에 user_layout 넣는다.
-        return UserViewHolder(view) //view를 UserViewHolder에 넣어
+        return UserViewHolder(view) //view를 UserViewHolder에 넣음
     }
 
     //데이터를 전달받아 user_layout에 연결
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-
         val currentUser = userList[position]    //userList의 데이터를 순서대로 currentUser에 넣음
         holder.nameText.text = currentUser.stuName //currentUser의 stuName을 텍스트뷰에 넣음
+
+        holder.itemView.setOnClickListener {
+            val intent  = Intent(context, ChatActivity::class.java)
+            //넘길 데이터
+            intent.putExtra("stuName", currentUser.stuName)
+            intent.putExtra("userID", currentUser.userID)
+
+            context.startActivity(intent)   //intent에 stuName과 userID를 담아서 ChatActivity로 넘김
+        }
     }
 
     class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {    //RecyclerView.ViewHolder를 상속받아 View를 전달받아 user_layout에 텍스트뷰 객체 생성 가능
