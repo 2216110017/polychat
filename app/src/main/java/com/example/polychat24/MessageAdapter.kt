@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
 
 //MessageAdapter 생성시 context와 messageList 받음
 class MessageAdapter(private val context: Context, private val messageList: ArrayList<Message>):
@@ -44,8 +43,11 @@ class MessageAdapter(private val context: Context, private val messageList: Arra
 
     override fun getItemViewType(position: Int): Int {  //어떤 ViewHolder 사용할지 선택
         val currentMessage = messageList[position]  //메시지 값을 currentMessage에 담음
+        val sharedPref = context.getSharedPreferences("MyApp", Context.MODE_PRIVATE)
+        val currentUserID = sharedPref.getInt("userID", 0).toString()
 
-        return if(FirebaseAuth.getInstance().currentUser?.uid.equals(currentMessage.sendId)){               ///
+        return if(currentUserID == currentMessage.sendID){
+//        return if(FirebaseAuth.getInstance().currentUser?.uid.equals(currentMessage.sendID)){               ///
             send    //onCreateViewHolder의 viewType으로 보냄
         }else{
             receive

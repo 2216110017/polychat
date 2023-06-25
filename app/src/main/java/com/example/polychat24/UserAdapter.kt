@@ -27,7 +27,7 @@ class UserAdapter(private val context: Context, private val userList: ArrayList<
             val intent  = Intent(context, ChatActivity::class.java)
             //넘길 데이터
             intent.putExtra("stuName", currentUser.stuName)
-            intent.putExtra("userID", currentUser.userID)
+            intent.putExtra("userID", currentUser.userID.toString())
 
             context.startActivity(intent)   //intent에 stuName과 userID를 담아서 ChatActivity로 넘김
         }

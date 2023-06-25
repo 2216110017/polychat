@@ -40,11 +40,17 @@ class LogInActivity : AppCompatActivity() {
             val jsonObject = jsonArray.getJSONObject(i)
             val jsonStuNum = jsonObject.getString("stuNum")
             val jsonStuName = jsonObject.getString("stuName")
+            // 로그인한 사용자와 DB상 학번과 이름 일치하는지 확인
             if (stuNum == jsonStuNum && stuName == jsonStuName) {
+                val sharedPref = getSharedPreferences("MyApp", MODE_PRIVATE)
+                with (sharedPref.edit()) {
+                    putInt("userID", jsonObject.getInt("userID"))   //현재 사용자의 userID를 저장함
+                    apply()
+                }
+
                 return true     //학번, 이름이 일치하면 true
             }
         }
-//stuNum != null &&
         return false    //일치하는 데이터가 없으면 false 반환
     }
 
