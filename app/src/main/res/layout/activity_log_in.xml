@@ -10,6 +10,7 @@
     android:id="@+id/logo_image"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginStart="70dp"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="70dp"
     android:src="@drawable/chat" />
@@ -19,8 +20,8 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:layout_below="@id/logo_image"
+    android:layout_marginTop="20dp"
     android:layout_marginLeft="20dp"
-    android:layout_marginTop="10dp"
     android:layout_marginRight="20dp"
     android:background="@drawable/edit_background"
     android:hint="@string/log_in_stuNum_hint"

@@ -33,9 +33,10 @@ class ChatActivity : AppCompatActivity() {
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         //초기화
         messageList = ArrayList()
-        val messageAdapter: MessageAdapter = MessageAdapter(this, messageList)
+        val messageAdapter = MessageAdapter(this, messageList)
 
         //RycyclerView
         binding.chatRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -48,7 +49,11 @@ class ChatActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         mDbRef = FirebaseDatabase.getInstance().reference
 
-        val senderuserID = mAuth.currentUser?.uid   //접속자 userID
+
+
+        val sharedPref = getSharedPreferences("MyApp", MODE_PRIVATE)
+        val senderuserID = sharedPref.getInt("userID", 0).toString()
+//        val senderuserID = mAuth.currentUser?.uid   //접속자 userID
         senderRoom = receiveruserID + senderuserID  //발신자방
         receiverRoom = senderuserID + receiveruserID    //수신자방
         supportActionBar?.title = receiverName     //액션바에 상대방 이름 보여주기
