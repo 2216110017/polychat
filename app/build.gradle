@@ -6,15 +6,12 @@ plugins {
 
 android {
     namespace 'com.example.polychat24'
-    compileSdk 34
+    compileSdk 33
 
     defaultConfig {
-        applicationId 'PolyChat'
         minSdk 21
-        targetSdk 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        testApplicationId 'chattest11'
         signingConfig signingConfigs.debug
         versionCode 1
         versionName '1.0'
@@ -44,7 +41,6 @@ android {
     buildFeatures{
         viewBinding = true  //fileViewByld없이 뷰 객체 접근하기 위한 설정
     }
-    buildToolsVersion '34.0.0'
 }
 
 dependencies {
@@ -57,7 +53,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
     implementation 'androidx.core:core-ktx:1.10.1'
-    implementation platform('com.google.firebase:firebase-bom:31.5.0')  //firebase
+    implementation platform('com.google.firebase:firebase-bom:32.1.1')  //firebase
     implementation 'com.google.firebase:firebase-analytics-ktx:21.3.0'//firebase
     implementation 'com.google.firebase:firebase-auth-ktx:22.0.0'
     implementation 'com.google.firebase:firebase-database-ktx:20.2.2'
